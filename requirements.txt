@@ -1,0 +1,18 @@
+# Playwright is a Python library for automating web browsers
+playwright
+pytest-playwright
+
+# Pytest is a testing framework for Python
+pytest
+pytest-base-url
+
+# Reporter
+pytest-reporter-html1
+
+junit-xml
+
+# IPython debugger
+ipdb
+
+# Code linter for Python
+flake8

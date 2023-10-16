@@ -1,0 +1,8 @@
+.idea
+.vscode
+venv
+.pytest_cache
+.DS_Store
+__pycache__
+/report.html
+/report.xml

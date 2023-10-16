@@ -1,2 +1,2 @@
 # playwright-python
-playwright automated tests written with python
+python/playwright testing framework
