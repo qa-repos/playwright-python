@@ -6,7 +6,7 @@ tests:
   image: mcr.microsoft.com/playwright/python:v1.38.0-jammy
   script:
     - pip install -r requirements.txt
-    - pytest --junitxml=report.xml --base-url https://demoqa.com
+    - pytest --junitxml=reports/report.xml --base-url https://demoqa.com
   artifacts:
       paths:
-        - /report.xml
+        - reports/*
