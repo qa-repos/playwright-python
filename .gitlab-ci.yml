@@ -7,16 +7,18 @@ test:
   image: mcr.microsoft.com/playwright/python:v1.38.0-jammy
   script:
     - pip install -r requirements.txt
-    - pytest --junitxml=reports/report.xml --template=html1/index.html --report=reports-html/report.html --base-url https://demoqa.com
+    - pytest --junitxml=reports/xml/report.xml --template=html1/index.html --report=reports/html/report.html --base-url https://demoqa.com
   artifacts:
     paths:
-      - reports/
-      - reports-html/
+      - reports
 pages:
   stage: pages
   script:
     - ls
-    - ls reports-html
+    - ls reports/html
+    - mkdir .public
+    - cp -r reports/html/* .public
+    - mv .public public
   artifacts:
     paths:
       - public
