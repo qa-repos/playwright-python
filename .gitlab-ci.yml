@@ -15,9 +15,8 @@ test:
 pages:
   stage: pages
   script:
-    — mkdir .public
-    — cp -r reports-html/* .public
-    — mv .public public
+    - ls
+    - ls reports-html
   artifacts:
     paths:
       - public
