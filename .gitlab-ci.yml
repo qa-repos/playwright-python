@@ -33,4 +33,4 @@ automated-api-tests:
   script:
     # Login using your Postman API keys
     - postman login --with-api-key $POSTMAN_API_KEY
-    - postman collection run POSTMAN_COLLECTION_VAR_1 -e $POSTMAN_COLLECTION_VAR_2
+    - postman collection run $POSTMAN_COLLECTION_VAR_1 -e $POSTMAN_COLLECTION_VAR_2
