@@ -1,2 +1,2 @@
-# playwright-python
-python/playwright testing framework
+# self-python
+python/self testing framework

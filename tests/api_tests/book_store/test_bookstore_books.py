@@ -1,7 +1,9 @@
-from typing import Generator
-
+import time
 import pytest
+
+from typing import Generator
 from playwright.sync_api import Playwright, APIRequestContext
+from utils.helpers.user import User
 
 
 @pytest.fixture(scope="session")
@@ -18,3 +20,10 @@ def test_get_all_books(api_request_context: APIRequestContext) -> None:
     assert books.ok
     books_response = books.json()
     assert books_response, "Noo books found!"
+
+
+def test_register_new_user(api_request_context: APIRequestContext) -> None:
+    user_helper = User()
+    username = f"{int(time.time())}"
+    password = "P@SSWord1"
+    user_helper.register_new_user(api_request_context, username, password)
