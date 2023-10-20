@@ -3,7 +3,12 @@ import pytest
 
 from typing import Generator
 from playwright.sync_api import Playwright, APIRequestContext
-from utils.helpers.user import User
+from api.helpers.helpers.user import User
+
+username = f"{int(time.time())}"
+password = "P@SSWord1"
+
+user_helper = User()
 
 
 @pytest.fixture(scope="session")
@@ -23,7 +28,8 @@ def test_get_all_books(api_request_context: APIRequestContext) -> None:
 
 
 def test_register_new_user(api_request_context: APIRequestContext) -> None:
-    user_helper = User()
-    username = f"{int(time.time())}"
-    password = "P@SSWord1"
     user_helper.register_new_user(api_request_context, username, password)
+
+
+def test_login_successfully(api_request_context: APIRequestContext) -> None:
+    user_helper.login_to_bookstore(api_request_context, username, password)

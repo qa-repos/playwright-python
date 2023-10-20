@@ -12,10 +12,20 @@ class User:
         yield request_context
         request_context.dispose()
 
-    def register_new_user(self, api_request_context: APIRequestContext, username, password):
+    @staticmethod
+    def register_new_user(api_request_context: APIRequestContext, username, password):
         payload = {
             "userName": username,
             "password": password
         }
         new_user = api_request_context.post("/Account/v1/User", form=payload)
         assert new_user.ok
+
+    @staticmethod
+    def login_to_bookstore(api_request_context: APIRequestContext, username, password):
+        payload = {
+            "userName": username,
+            "password": password
+        }
+        login = api_request_context.post("Account/v1/GenerateToken", form=payload)
+        assert login.ok

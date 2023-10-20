@@ -1,6 +1,6 @@
 # Playwright is a Python library for automating web browsers
-self
-pytest-self
+playwright
+pytest-playwright
 
 # Pytest is a testing framework for Python
 pytest
