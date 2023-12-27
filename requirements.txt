@@ -4,7 +4,6 @@ pytest-playwright
 
 # Pytest is a testing framework for Python
 pytest
-pytest-base-url
 
 # Reporter
 pytest-reporter-html1

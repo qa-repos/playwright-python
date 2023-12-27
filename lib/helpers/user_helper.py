@@ -3,7 +3,7 @@ import pytest
 from playwright.sync_api import Playwright, APIRequestContext
 
 
-class User:
+class UserHelper:
     @pytest.fixture(scope="session")
     def api_request_context(
             self: Playwright, base_url
