@@ -10,8 +10,8 @@ test:
     - pip install -r requirements.txt
     - cp .env.example .env
     - python test_dotenv.py
-#    - PLAYWRIGHT_BROWSERS_PATH=/ms-playwright python -m playwright install --with-deps chromium
-#    - pytest --junitxml=reports/xml/report.xml --template=html1/index.html --report=reports/html/index.html --base-url https://demoqa.com
+    - PLAYWRIGHT_BROWSERS_PATH=/ms-playwright python -m playwright install --with-deps chromium
+    - pytest --junitxml=reports/xml/report.xml --template=html1/index.html --report=reports/html/index.html -m ui
   artifacts:
     paths:
       - reports

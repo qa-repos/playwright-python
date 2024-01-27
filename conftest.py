@@ -1,7 +1,11 @@
 from typing import Generator
+from dotenv import load_dotenv
 
+import os
 import pytest
 from playwright.sync_api import Playwright, APIRequestContext
+
+load_dotenv()
 
 
 @pytest.fixture(scope="session")
@@ -17,7 +21,7 @@ def browser_context_args(browser_context_args):
 
 @pytest.fixture(scope="session")
 def base_url():
-    return "https://demoqa.com"
+    return os.getenv('DOMAIN')
 
 
 @pytest.fixture(scope="session")
