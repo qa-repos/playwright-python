@@ -8,19 +8,21 @@ test:
   image: mcr.microsoft.com/playwright/python:v1.38.0-jammy
   script:
     - pip install -r requirements.txt
-    - PLAYWRIGHT_BROWSERS_PATH=/ms-playwright python -m playwright install --with-deps chromium
-    - pytest --junitxml=reports/xml/report.xml --template=html1/index.html --report=reports/html/index.html --base-url https://demoqa.com
+    - cp .env.example .env
+    - python test_dotenv.py
+#    - PLAYWRIGHT_BROWSERS_PATH=/ms-playwright python -m playwright install --with-deps chromium
+#    - pytest --junitxml=reports/xml/report.xml --template=html1/index.html --report=reports/html/index.html --base-url https://demoqa.com
   artifacts:
     paths:
       - reports
-pages:
-  stage: pages
-  script:
-    - ls
-    - ls reports/html
-    - mkdir .public
-    - cp -r reports/html/* .public
-    - mv .public public
-  artifacts:
-    paths:
-      - public
+#pages:
+#  stage: pages
+#  script:
+#    - ls
+#    - ls reports/html
+#    - mkdir .public
+#    - cp -r reports/html/* .public
+#    - mv .public public
+#  artifacts:
+#    paths:
+#      - public

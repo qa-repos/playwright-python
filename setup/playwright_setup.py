@@ -1,44 +1,33 @@
 from playwright.sync_api import Page
 
-# Global configuration settings
-BASE_URL = "https://example.com"
+class UITestSetup:
+    BASE_URL = "https://example.com"
 
+    def __init__(self, url=BASE_URL):
+        self.browser = self.initialize_playwright(url)
+        self.context = self.setup_test_context(self.browser)
 
-def initialize_playwright():
-    with Page as p:
-        browser = p.chromium.launch()
-        # You can configure context, browser options, and other settings here.
-        # Return the browser instance for use in tests.
-        return browser
+    def __del__(self):
+        self.finalize_ui_test(self.browser, self.context)
 
+    def initialize_playwright(self, url):
+        with Page as p:
+            browser = p.chromium.launch()
+            page = browser.new_page()
+            page.goto(url)
+            return browser
 
-def setup_test_context(browser):
-    context = browser.new_context()
-    # Configure the context as needed.
-    return context
+    def setup_test_context(self, browser):
+        context = browser.new_context()
+        return context
 
+    def teardown_test_context(self, context):
+        context.close()
 
-def teardown_test_context(context):
-    context.close()
+    def finalize_ui_test(self, browser, context):
+        self.teardown_test_context(context)
+        browser.close()
 
-
-def navigate_to_page(context, url):
-    page = context.new_page()
-    page.goto(url)
-    return page
-
-
-def handle_error(exception):
-    # Handle exceptions, log errors, and take screenshots.
-    pass
-
-
-def initialize_ui_test():
-    browser = initialize_playwright()
-    context = setup_test_context(browser)
-    return browser, context
-
-
-def finalize_ui_test(browser, context):
-    teardown_test_context(context)
-    browser.close()
+    def handle_error(self, exception):
+        # Handle exceptions, log errors, and take screenshots.
+        pass
