@@ -4,46 +4,24 @@ stages:
   - pages
   - automated-api-tests
 
-setup_tests:
+setup_and_run_tests:
   stage: setup_tests
   image: mcr.microsoft.com/playwright/python:v1.38.0-jammy
   script:
-    - ls
     - pip install -r requirements.txt
-    - ls
     - cp .env.example .env
-    - ls
     - python test_dotenv.py
-    - ls
     - PLAYWRIGHT_BROWSERS_PATH=/ms-playwright python -m playwright install --with-deps chromium
-  artifacts:
-    paths:
-      - reports
-
-ui:
-  stage: run_tests
-  needs: [ "setup_tests" ]
-  script:
-    - ls
     - pytest --junitxml=reports/xml/report.xml --template=html1/index.html --report=reports/html/index.html -m ui -v
 
-#api:
-#  stage: run_tests
-#  image: mcr.microsoft.com/playwright/python:v1.38.0-jammy
-#  needs: [ "setup_tests" ]
-#  script:
-#    - ls
-#    - pytest --junitxml=reports/xml/report.xml --template=html1/index.html --report=reports/html/index.html -m api -v
-
-
-#pages:
-#  stage: pages
-#  script:
-#    - ls
-#    - ls reports/html
-#    - mkdir .public
-#    - cp -r reports/html/* .public
-#    - mv .public public
-#  artifacts:
-#    paths:
-#      - public
+pages:
+  stage: pages
+  script:
+    - ls
+    - ls reports/html
+    - mkdir .public
+    - cp -r reports/html/* .public
+    - mv .public public
+  artifacts:
+    paths:
+      - public
