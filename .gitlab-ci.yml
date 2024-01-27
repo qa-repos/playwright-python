@@ -18,15 +18,13 @@ setup_tests:
 
 ui:
   stage: run_tests
-  needs:
-    - setup_tests
+  needs: [ "setup_tests" ]
   script:
     - pytest --junitxml=reports/xml/report.xml --template=html1/index.html --report=reports/html/index.html -m ui -v
 
 api:
   stage: run_tests
-  needs:
-    - setup_tests
+  needs: [ "setup_tests" ]
   script:
     - pytest --junitxml=reports/xml/report.xml --template=html1/index.html --report=reports/html/index.html -m api -v
 
