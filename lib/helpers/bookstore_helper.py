@@ -1,5 +1,7 @@
 from playwright.sync_api import APIRequestContext
 
+from lib.serializers.models.all_books_modal import AllBooksModal
+
 
 class BookstoreHelper:
     def __init__(self, request_context: APIRequestContext):
@@ -9,4 +11,8 @@ class BookstoreHelper:
 
     def get_books(self):
         response = self.request.get(self.get_books_url)
-        return response
+        books = response.json()
+
+        AllBooksModal.model_validate(books)
+
+        return books
