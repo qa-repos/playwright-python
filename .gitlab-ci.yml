@@ -8,6 +8,7 @@ setup_and_run_tests:
   stage: setup_tests
   image: mcr.microsoft.com/playwright/python:v1.38.0-jammy
   script:
+    - pip install --upgrade pip
     - pip install -r requirements.txt
     - cp .env.example .env
     - python test_dotenv.py
@@ -16,18 +17,25 @@ setup_and_run_tests:
   artifacts:
     paths:
       - reports
+    expire_in: 7 days  # Store artifacts for a week
     when: always
+  cache:
+    paths:
+      - .cache/pip  # Cache pip dependencies
+      - /ms-playwright  # Cache Playwright browsers
 
 pages:
   stage: pages
   script:
-    - ls
-    - ls reports/html
-    - mkdir .public
-    - cp -r reports/html/* .public
-    - mv .public public
+    - ls -la
+    - ls -la reports/html
+    - mkdir -p public
+    - cp -r reports/html/* public/
   dependencies:
     - setup_and_run_tests
   artifacts:
     paths:
       - public
+    expire_in: 7 days
+  only:
+    - main  # Deploy only on the main branch
