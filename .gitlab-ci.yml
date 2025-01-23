@@ -13,7 +13,7 @@ setup_and_run_tests:
     - cp .env.example .env
     - python test_dotenv.py
     - PLAYWRIGHT_BROWSERS_PATH=/ms-playwright python -m playwright install --with-deps chromium
-    - pytest --junitxml=reports/xml/report.xml --template=html1/index.html --report=reports/html/index.html -m ui -v
+    - pytest -vv --junitxml=reports/xml/report.xml --template=html1/index.html --report=reports/html/index.html
   artifacts:
     paths:
       - reports

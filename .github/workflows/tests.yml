@@ -31,4 +31,4 @@ jobs:
           playwright install --with-deps
 
       - name: Run Playwright tests in headless mode
-        run: pytest tests --headless
+        run: pytest --headless -vv
