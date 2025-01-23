@@ -17,4 +17,4 @@ junit-xml
 ipdb
 
 # Code linter for Python
-flake8
+black
