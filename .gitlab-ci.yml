@@ -23,6 +23,8 @@ setup_and_run_tests:
     paths:
       - .cache/pip  # Cache pip dependencies
       - /ms-playwright  # Cache Playwright browsers
+  variables:
+    CI: "true"
 
 pages:
   stage: pages

@@ -1,5 +1,8 @@
 name: Playwright Tests
 
+env:
+  CI: true
+
 on:
   push:
     branches:
@@ -16,10 +19,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up Python (latest)
+      - name: Set up Python (latest stable version)
         uses: actions/setup-python@v4
         with:
-          python-version: 'latest'
+          python-version: '3.11'
 
       - name: Install dependencies
         run: |
@@ -27,5 +30,5 @@ jobs:
           pip install -r requirements.txt
           playwright install --with-deps
 
-      - name: Run Playwright tests
-        run: pytest tests
+      - name: Run Playwright tests in headless mode
+        run: pytest tests --headless

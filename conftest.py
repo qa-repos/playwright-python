@@ -37,7 +37,8 @@ def request_context(
 
 @pytest.fixture(scope="session")
 def browser(playwright):
-    browser = playwright.chromium.launch(headless=False)
+    headless = os.getenv("CI", "false").lower() == "true"  # Headless only in CI
+    browser = playwright.chromium.launch(headless=headless)
     yield browser
     browser.close()
 
