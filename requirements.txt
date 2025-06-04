@@ -6,7 +6,7 @@ python-dotenv
 
 # Pytest is a testing framework for Python
 pytest
-pydantic
+pydantic>=2
 
 # Reporter
 pytest-reporter-html1
